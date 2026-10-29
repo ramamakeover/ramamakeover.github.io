@@ -1,0 +1,5 @@
+# Allow all search engines and AI assistants to read the site.
+User-agent: *
+Allow: /
+
+Sitemap: https://ramamakeover.github.io/sitemap.xml

@@ -1,0 +1,15 @@
+# Weekly AI-search (GEO) audit of the live site. Run it by hand from the Actions tab after any change.
+name: GEO audit
+on:
+  schedule:
+    - cron: "30 3 * * 1"   # every Monday, 9:00 am IST
+  workflow_dispatch:
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Auriti-Labs/geo-optimizer-skill@v4.19.8
+        with:
+          url: https://ramamakeover.github.io/
+          min-score: 0       # report only; never fail
+          format: github     # findings show as notes on the run
