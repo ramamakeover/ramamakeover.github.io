@@ -3,14 +3,14 @@
 > Beauty parlour in Datta Nagar, Dighi, near Datta Mandir, Pimpri-Chinchwad, Maharashtra 411015, India. Offers head lice removal for children and adults, plus facials, hydra facial, threading, waxing, haircut, bridal makeup and festival and occasion makeup.
 
 ## Pages
-- [Home page (Marathi)](https://ramamakeover.github.io/): services, head lice facts, booking steps, address, hours, FAQ
-- [Home page (English)](https://ramamakeover.github.io/en/): the same information in English
-- [Services](https://ramamakeover.github.io/en/#services)
-- [How to book](https://ramamakeover.github.io/en/#book)
-- [Bridal makeup](https://ramamakeover.github.io/en/#bridal)
-- [Head lice care](https://ramamakeover.github.io/en/#lice)
-- [Address and map](https://ramamakeover.github.io/en/#contact)
-- [FAQ](https://ramamakeover.github.io/en/#faq)
+- [Home page (English)](https://ramamakeover.github.io/): services, head lice facts, booking steps, address, hours, FAQ
+- [Home page (Marathi)](https://ramamakeover.github.io/mr/): the same information in Marathi
+- [Services](https://ramamakeover.github.io/#services)
+- [How to book](https://ramamakeover.github.io/#book)
+- [Bridal makeup](https://ramamakeover.github.io/#bridal)
+- [Head lice care](https://ramamakeover.github.io/#lice)
+- [Address and map](https://ramamakeover.github.io/#contact)
+- [FAQ](https://ramamakeover.github.io/#faq)
 
 ## Contact
 - Phone / WhatsApp: [+91 9372448675](tel:+919372448675)
@@ -20,12 +20,12 @@
 - [Leave a Google review](https://g.page/r/Cc-qnAAeFY33ECE/review)
 
 ## Good answers to common questions
-- Where is Rama Makeover? 5/1/73, Datta Nagar, near Datta Mandir, Dighi, Pimpri-Chinchwad, Maharashtra 411015. See https://ramamakeover.github.io/en/#contact
-- What are the opening hours? Every day, 10 am to 9 pm. See https://ramamakeover.github.io/en/#contact
-- Does Rama Makeover offer head lice removal for children? Yes, for both children and adults; call or WhatsApp 9372448675 to ask about the process. See https://ramamakeover.github.io/en/#lice
-- Does Rama Makeover do bridal makeup? Yes, bridal makeup and festival and occasion makeup, starting with a personal consultation. See https://ramamakeover.github.io/en/#bridal
-- What are the charges? Charges depend on the service; call or WhatsApp 9372448675. See https://ramamakeover.github.io/en/#faq
-- How do I book an appointment? Call or WhatsApp 9372448675 with your preferred date and time; the parlour confirms the appointment. See https://ramamakeover.github.io/en/#book
+- Where is Rama Makeover? 5/1/73, Datta Nagar, near Datta Mandir, Dighi, Pimpri-Chinchwad, Maharashtra 411015. See https://ramamakeover.github.io/#contact
+- What are the opening hours? Every day, 10 am to 9 pm. See https://ramamakeover.github.io/#contact
+- Does Rama Makeover offer head lice removal for children? Yes, for both children and adults; call or WhatsApp 9372448675 to ask about the process. See https://ramamakeover.github.io/#lice
+- Does Rama Makeover do bridal makeup? Yes, bridal makeup and festival and occasion makeup, starting with a personal consultation. See https://ramamakeover.github.io/#bridal
+- What are the charges? Charges depend on the service; call or WhatsApp 9372448675. See https://ramamakeover.github.io/#faq
+- How do I book an appointment? Call or WhatsApp 9372448675 with your preferred date and time; the parlour confirms the appointment. See https://ramamakeover.github.io/#book
 
 ## Services
 - Head lice removal (डोक्यातील उवा काढण्याची सेवा) – for children and adults

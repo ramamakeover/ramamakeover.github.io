@@ -55,6 +55,34 @@ img, svg { display:block; max-width:100%; }
 }
 @media (min-width:960px) { .nav[hidden] { display:flex; } }
 
+/* Language toggle: both languages visible, current one is the dark pill. Each side is a 44px tap target. */
+.lang-switch { display:inline-flex; flex:none; gap:2px; padding:2px; border:1px solid var(--border); border-radius:999px; background:var(--white); }
+.lang-switch a { display:inline-flex; align-items:center; justify-content:center; min-width:48px; min-height:44px; padding:0 14px; border-radius:999px; font-size:15px; font-weight:700; line-height:1; text-decoration:none; color:var(--cocoa); transition:background-color .2s, color .2s; }
+.lang-switch a:not([aria-current]):hover { background:var(--ivory); }
+.lang-switch a[aria-current] { background:var(--cocoa); color:var(--white); pointer-events:none; }
+.lang-switch.on-dark { background:transparent; border-color:rgba(255,255,255,.28); }
+.lang-switch.on-dark a { color:var(--ivory); }
+.lang-switch.on-dark a:not([aria-current]):hover { background:rgba(255,255,255,.1); }
+.lang-switch.on-dark a[aria-current] { background:var(--ivory); color:var(--cocoa); }
+.vh { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+/* header order: logo, nav, language toggle, Book button; on phones the toggle sits just before the Menu button */
+.site-header .bar-inner > .lang-switch { order:2; margin-left:8px; }
+.site-header .header-cta { order:3; }
+.site-header .nav { order:1; }
+@media (max-width:959px) {
+  .site-header .bar-inner > .lang-switch { margin-left:auto; }
+  .site-header .menu-btn { order:4; margin-left:8px; }
+}
+.logo-link { flex:none; }
+@media (max-width:400px) {
+  .lang-switch a { min-width:44px; padding:0 10px; font-size:14px; }
+  .menu-btn { padding:0 10px; }
+  /* very small phones: icon-only menu button (label stays available to screen readers) */
+  .menu-txt { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+  .site-header .bar-inner { padding:0 8px 0 12px; gap:6px; }
+  .logo-link img { height:44px; }
+}
+
 /* Buttons */
 .btn { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:48px; padding:0 22px; border-radius:var(--r-btn); font-weight:700; font-size:16px; text-decoration:none; border:1.5px solid transparent; transition:transform .18s var(--ease), background-color .18s, color .18s, border-color .18s; }
 .btn .ico { width:18px; height:18px; }
