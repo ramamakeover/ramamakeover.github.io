@@ -212,7 +212,7 @@ section.block { padding-top:96px; padding-bottom:96px; }
 .hello.sent .send-txt { opacity:0; }
 .hello.sent .send-ok { opacity:1; }
 .hello.err .hello-row { border-color:#B3261E; }
-.hello-err { color:#B3261E; font-size:15px; font-weight:600; margin-top:8px; }
+.hello .hello-err { color:#B3261E; font-size:15px; font-weight:600; margin-top:8px; }
 .hello-status { min-height:24px; margin-top:6px; font-weight:600; }
 .hello-note { font-size:14px; }
 .hello .fly-text { position:absolute; left:18px; top:50%; max-width:65%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; pointer-events:none; translate:0 -50%; animation:lift .7s var(--ease) forwards; }
