@@ -13,3 +13,8 @@ jobs:
           url: https://ramamakeover.github.io/
           min-score: 0       # report only; never fail
           format: github     # findings show as notes on the run
+      - uses: actions/upload-artifact@v4   # full JSON report, downloadable from the run page
+        if: always()
+        with:
+          name: geo-report
+          path: geo-report.json
