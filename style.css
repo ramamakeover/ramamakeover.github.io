@@ -279,6 +279,18 @@ footer .small { margin-top:40px; padding-top:20px; border-top:1px solid rgba(255
 @media (max-width:767px) { .faq { margin-top:32px; } }
 @media (min-width:1024px) { .cards { grid-template-columns:repeat(3,1fr); } .hero-photo { aspect-ratio:21/10; } }
 
+/* Skeleton loading for photo boxes: a soft shimmer until the photo arrives (JS adds .loaded).
+   Below-the-fold photos fade in; the hero photo (fetchpriority) is never hidden, so LCP is unaffected. */
+.sk { background:linear-gradient(100deg, var(--cream) 30%, #FBF6F1 50%, var(--cream) 70%); background-size:300% 100%; background-position:100% 0; }
+.alt .sk { background-image:linear-gradient(100deg, #E9DED2 30%, #F6EEE6 50%, #E9DED2 70%); }
+.js .sk img:not([fetchpriority]) { opacity:0; transition:opacity .5s ease; }
+.js .sk.loaded img { opacity:1; }
+.sk.failed img { visibility:hidden; }
+@media (prefers-reduced-motion:no-preference) {
+  .js .sk:not(.loaded):not(.failed) { animation:shimmer 1.4s linear infinite; }
+}
+@keyframes shimmer { from { background-position:100% 0; } to { background-position:0 0; } }
+
 /* Motion — only transform, opacity and clip-path are animated (smooth on budget phones).
    Full scroll reveals when motion is allowed; opacity-only soft fades under "reduce motion". */
 @media (prefers-reduced-motion:no-preference) {

@@ -97,3 +97,11 @@ if (hello) {
     }, 2600);
   });
 }
+
+// 6) Skeleton loading: mark each photo box .loaded (or .failed) so its shimmer stops and the photo fades in.
+document.querySelectorAll(".sk img").forEach(function (img) {
+  var box = img.closest(".sk");
+  function done() { box.classList.add(img.naturalWidth ? "loaded" : "failed"); }
+  if (img.complete) done();
+  else { img.addEventListener("load", done, { once: true }); img.addEventListener("error", done, { once: true }); }
+});
