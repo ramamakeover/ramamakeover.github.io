@@ -1,2 +1,4 @@
 # Design notes and other documents stay on this computer, not on the public site.
 *.md
+# Canva source file; the site uses images/logo-light.webp and images/logo-dark.webp.
+images/Logo.svg
