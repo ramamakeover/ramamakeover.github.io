@@ -180,6 +180,53 @@ section.block { padding-top:96px; padding-bottom:96px; }
 .contact p { margin-top:6px; }
 .contact a { display:inline-flex; align-items:center; min-height:44px; font-weight:700; text-underline-offset:3px; }
 
+/* Focus Reveal (hero heading): words start blurred; a frame travels word to word and brings each into focus. JS adds .fr only when motion is allowed. */
+.title.fr { position:relative; }
+.fr .fr-w { filter:blur(9px); opacity:.25; transition:filter .45s var(--ease), opacity .45s var(--ease); }
+.fr .fr-w.in { filter:none; opacity:1; }
+.fr-frame { position:absolute; left:0; top:0; border:1.5px solid var(--rose); border-radius:12px; pointer-events:none; opacity:0;
+  transition:transform .32s var(--ease), width .32s var(--ease), height .32s var(--ease), opacity .3s; }
+.fr-frame.on { opacity:1; }
+.fr-frame.done { opacity:0; }
+
+/* Glow ring on the hero Book button: a gold/blush ring orbits the icon disc and settles on hover. */
+.btn-glow .ring { position:relative; display:grid; place-items:center; width:32px; height:32px; margin-left:-8px; border-radius:50%; background:rgba(255,255,255,.1); }
+.btn-glow .ring .ico { width:17px; height:17px; }
+.btn-glow .ring::before { content:""; position:absolute; inset:-2px; border-radius:50%;
+  background:conic-gradient(from 0deg, #E2AE3E, #D9A6A0, #FAF7F2 40%, #A8B5A0, #E2AE3E);
+  -webkit-mask:radial-gradient(farthest-side, transparent calc(100% - 2.5px), #000 calc(100% - 2px));
+          mask:radial-gradient(farthest-side, transparent calc(100% - 2.5px), #000 calc(100% - 2px)); }
+
+/* Send Hello -> WhatsApp */
+.hello { max-width:640px; margin:40px auto 0; text-align:left; }
+.hello label { display:block; font-weight:700; margin-bottom:10px; }
+.hello-row { position:relative; display:flex; gap:8px; background:var(--white); border:1px solid var(--border); border-radius:16px; padding:6px; transition:border-color .2s; }
+.hello-row:focus-within { border-color:var(--rose-ink); }
+.hello input { flex:1; min-width:0; border:0; outline:0; background:transparent; font:inherit; color:var(--cocoa); padding:0 12px; min-height:48px; transform-origin:left center; transition:opacity .3s, transform .45s var(--ease); }
+.hello input::placeholder { color:var(--muted); opacity:1; }
+.send { position:relative; display:grid; min-height:48px; min-width:48px; padding:0 18px; border:0; border-radius:12px; background:var(--cocoa); color:var(--white); font:inherit; font-weight:700; cursor:pointer; transition:transform .55s var(--ease), background-color .25s; }
+.send > span { grid-area:1/1; display:inline-flex; align-items:center; justify-content:center; gap:8px; transition:opacity .2s; }
+.send .ico { width:18px; height:18px; }
+.send-ok { opacity:0; }
+.hello.sent .send { background:#55684F; }
+.hello.sent .send-txt { opacity:0; }
+.hello.sent .send-ok { opacity:1; }
+.hello.err .hello-row { border-color:#B3261E; }
+.hello-err { color:#B3261E; font-size:15px; font-weight:600; margin-top:8px; }
+.hello-status { min-height:24px; margin-top:6px; font-weight:600; }
+.hello-note { font-size:14px; }
+.hello .fly-text { position:absolute; left:18px; top:50%; max-width:65%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; pointer-events:none; translate:0 -50%; animation:lift .7s var(--ease) forwards; }
+.hello .plane { position:absolute; left:18px; top:50%; width:24px; height:24px; color:var(--rose-ink); opacity:0; pointer-events:none; animation:plane 1.15s cubic-bezier(.5,0,.3,1) .15s forwards; }
+@media (prefers-reduced-motion:no-preference) {
+  .btn-glow .ring::before { animation:orbit 3.6s linear infinite; }
+  .btn-glow:hover .ring::before { animation-play-state:paused; }
+  .hello.sending input { opacity:0; transform:scaleX(.6) translateY(-6px); }
+  .hello.sent .send { transform:rotateX(360deg); }
+}
+@keyframes orbit { to { transform:rotate(1turn); } }
+@keyframes lift { to { transform:translateY(-46px) scale(.6); opacity:0; } }
+@keyframes plane { 0% { opacity:0; transform:translate(0,-50%) rotate(0); } 15% { opacity:1; } 100% { opacity:0; transform:translate(min(460px,62vw),-150px) rotate(-12deg) scale(.7); } }
+
 /* Logo sparkle twinkle: CSS stars placed over the sparkles baked into the logo image.
    Deep amber with a soft light glow on the ivory header (white or pale gold vanish there), white with a glow in the footer. */
 .logo-art { position:relative; display:inline-block; line-height:0; }
