@@ -8,7 +8,7 @@ jobs:
   audit:
     runs-on: ubuntu-latest
     steps:
-      - uses: Auriti-Labs/geo-optimizer-skill@v4.19.8
+      - uses: Auriti-Labs/geo-optimizer-skill@9795ca348e50cc3653aaebef275ab6defc2aa83f # v4.19.8
         with:
           url: https://ramamakeover.github.io/
           min-score: 0       # report only; never fail
