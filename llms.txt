@@ -7,7 +7,9 @@
 - [Home page (English)](https://ramamakeover.github.io/en/): the same information in English
 - [Services](https://ramamakeover.github.io/en/#services)
 - [How to book](https://ramamakeover.github.io/en/#book)
-- [Address and map](https://ramamakeover.github.io/en/#visit)
+- [Bridal makeup](https://ramamakeover.github.io/en/#bridal)
+- [Head lice care](https://ramamakeover.github.io/en/#lice)
+- [Address and map](https://ramamakeover.github.io/en/#contact)
 - [FAQ](https://ramamakeover.github.io/en/#faq)
 
 ## Contact
