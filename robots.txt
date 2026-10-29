@@ -1,4 +1,17 @@
-# Allow all search engines and AI assistants to read the site.
+# Search and AI answer engines that cite pages, allowed by name
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+# Everyone else (Google, Bing and others)
 User-agent: *
 Allow: /
 

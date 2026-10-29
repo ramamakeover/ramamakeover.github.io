@@ -40,7 +40,7 @@ var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
 // 4) Focus Reveal: split the hero heading into words, then move a frame across them, un-blurring each one.
 var h1 = document.querySelector(".hero .title");
 if (h1 && !reduceMotion) {
-  var walker = document.createTreeWalker(h1, NodeFilter.SHOW_TEXT);
+  var walker = document.createTreeWalker(h1, NodeFilter.SHOW_TEXT, { acceptNode: function (n) { return n.parentNode.closest(".eyebrow") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT; } });
   var textNodes = [];
   while (walker.nextNode()) textNodes.push(walker.currentNode);
   textNodes.forEach(function (node) {

@@ -4,7 +4,7 @@
    Contrast: dusty rose #A66F78 is for large text/decoration only; small rose text uses --rose-ink (5.2:1 on ivory).
    Muted grey fails on cream (4.3:1), so cream sections use cocoa text. */
 :root {
-  --ivory:#FAF7F2; --cream:#F1E9DF; --white:#FFFFFF; --border:#E7DED5;
+  --bg:#FAF7F2; --ivory:#FAF7F2; --cream:#F1E9DF; --white:#FFFFFF; --border:#E7DED5;
   --cocoa:#352B2A; --cocoa-2:#4A3D3B; --muted:#746B67;
   --rose:#A66F78; --rose-ink:#8E5A63; --blush:#D9A6A0; --sage:#A8B5A0;
   --head:"DM Serif Display","Tiro Devanagari Marathi","Nirmala UI",Georgia,serif;
@@ -81,6 +81,8 @@ img, svg { display:block; max-width:100%; }
 /* Hero */
 .hero { padding:40px 0 0; text-align:center; }
 .hero .title { font-size:clamp(42px,8vw,84px); max-width:14ch; margin-left:auto; margin-right:auto; }
+.hero .title .eyebrow { display:flex; justify-content:center; font-family:var(--body); font-style:normal; line-height:1.4; margin-bottom:18px; max-width:none; }
+.hero .title { max-width:16ch; }
 .hero .intro { margin-left:auto; margin-right:auto; font-size:18px; max-width:46ch; }
 .hero .ctas { justify-content:center; }
 .hero .facts { display:flex; flex-wrap:wrap; justify-content:center; gap:8px 24px; margin-top:24px; font-size:15px; color:var(--cocoa); }
@@ -91,12 +93,12 @@ img, svg { display:block; max-width:100%; }
 
 /* Sections */
 section.block { padding-top:96px; padding-bottom:96px; }
-.alt { background:var(--cream); }
+.alt { background:var(--cream); --bg:var(--cream); }
 .split { display:grid; gap:40px; align-items:center; }
 .head-row { display:grid; gap:16px; align-items:end; }
 
 /* About */
-.arch { border-radius:999px 999px 24px 24px; overflow:hidden; aspect-ratio:3/4; max-width:440px; background:var(--cream); }
+.arch { position:relative; border-radius:999px 999px 24px 24px; overflow:hidden; aspect-ratio:3/4; max-width:440px; background:var(--cream); }
 .arch img { width:100%; height:100%; object-fit:cover; }
 .about p { margin-top:16px; max-width:56ch; color:var(--muted); }
 
@@ -133,7 +135,7 @@ section.block { padding-top:96px; padding-bottom:96px; }
 .why p { color:var(--muted); margin-top:4px; font-size:16px; }
 
 /* Bridal */
-.bridal-photo { border-radius:24px; overflow:hidden; aspect-ratio:4/5; background:var(--cream); }
+.bridal-photo { position:relative; border-radius:24px; overflow:hidden; aspect-ratio:4/5; background:var(--cream); }
 .bridal-photo img { width:100%; height:100%; object-fit:cover; }
 .offer { list-style:none; margin-top:24px; display:grid; gap:10px; }
 .offer li { display:flex; gap:10px; align-items:center; font-weight:500; }
@@ -277,14 +279,52 @@ footer .small { margin-top:40px; padding-top:20px; border-top:1px solid rgba(255
 @media (max-width:767px) { .faq { margin-top:32px; } }
 @media (min-width:1024px) { .cards { grid-template-columns:repeat(3,1fr); } .hero-photo { aspect-ratio:21/10; } }
 
-/* Motion — durations from the md table; only when JS runs and motion is allowed */
+/* Motion — only transform, opacity and clip-path are animated (smooth on budget phones).
+   Full scroll reveals when motion is allowed; opacity-only soft fades under "reduce motion". */
 @media (prefers-reduced-motion:no-preference) {
-  .hero .eyebrow, .hero .title, .hero .intro, .hero .facts, .hero .ctas { animation:rise .55s var(--ease) both; }
+  .hero .eyebrow, .hero .title, .hero .intro, .hero .facts, .hero .ctas { animation:rise .6s var(--ease) both; }
   .hero .title { animation-delay:.08s; } .hero .intro { animation-delay:.16s; } .hero .facts { animation-delay:.22s; } .hero .ctas { animation-delay:.28s; }
-  .hero-photo { animation:settle .65s var(--ease) .2s both; }
-  .js [data-reveal] { opacity:0; transform:translateY(16px); transition:opacity .45s var(--ease), transform .45s var(--ease); transition-delay:calc(var(--i,0)*80ms); }
+  .hero-photo { animation:settle .9s var(--ease) .25s both; }
+
+  /* Base reveal: rise + fade, staggered by --i */
+  .js [data-reveal] { opacity:0; transform:translateY(32px); transition:opacity .7s var(--ease), transform .8s var(--ease); transition-delay:calc(var(--i,0)*90ms); }
   .js [data-reveal].in { opacity:1; transform:none; }
+
+  /* Headings: the eyebrow line draws itself, the italic second line rises in after the first */
+  .js [data-reveal] .eyebrow::before { transform:scaleX(0); transform-origin:right; transition:transform .8s var(--ease) .1s; }
+  .js [data-reveal].center .eyebrow::after, .js .center [data-reveal] .eyebrow::after { transform:scaleX(0); transform-origin:left; transition:transform .8s var(--ease) .1s; }
+  .js [data-reveal].in .eyebrow::before, .js [data-reveal].in .eyebrow::after { transform:none; }
+  .js [data-reveal] .title em { opacity:0; transform:translateY(22px); transition:opacity .8s var(--ease) .2s, transform .8s var(--ease) .2s; }
+  .js [data-reveal].in .title em { opacity:1; transform:none; }
+
+  /* Photos: a section-coloured cover slides away (bottom-up curtain) while the picture zooms out.
+     A cover is used instead of clip-path: a fully clipped element never reports as on-screen to IntersectionObserver. */
+  .js .arch[data-reveal], .js .bridal-photo[data-reveal], .js .svc[data-reveal] { opacity:1; transform:none; }
+  .js .arch[data-reveal]::after, .js .bridal-photo[data-reveal]::after, .js .svc[data-reveal]::after { content:""; position:absolute; inset:0; z-index:2; background:var(--bg); transform-origin:top; transition:transform 1.1s var(--ease); transition-delay:calc(var(--i,0)*110ms); pointer-events:none; }
+  .js [data-reveal].in::after { transform:scaleY(0); }
+  .js .arch[data-reveal] img, .js .bridal-photo[data-reveal] img, .js .svc[data-reveal] img { transform:scale(1.15); transition:transform 1.5s var(--ease); }
+  .js [data-reveal].in img { transform:scale(1); }
+  .js .svc[data-reveal].in:hover img { transform:scale(1.04); transition-duration:.35s; }
+  .js .svc[data-reveal] .label { opacity:0; transform:translateY(24px); transition:opacity .6s var(--ease), transform .7s var(--ease); transition-delay:calc(var(--i,0)*110ms + .45s); }
+  .js .svc[data-reveal].in .label { opacity:1; transform:none; }
+
+  /* Review card scales in; FAQ questions arrive one after another */
+  .js .review-card[data-reveal] { transform:translateY(32px) scale(.94); }
+  .js .faq[data-reveal] { transform:none; }
+  .js .faq[data-reveal] details { opacity:0; transform:translateY(18px); transition:opacity .5s var(--ease), transform .6s var(--ease); }
+  .js .faq[data-reveal].in details { opacity:1; transform:none; }
+  .js .faq details:nth-child(2) { transition-delay:.08s; } .js .faq details:nth-child(3) { transition-delay:.16s; }
+  .js .faq details:nth-child(4) { transition-delay:.24s; } .js .faq details:nth-child(5) { transition-delay:.32s; }
 }
-@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } *, *::before, *::after { transition-duration:.01ms !important; animation-duration:.01ms !important; } }
-@keyframes rise { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
-@keyframes settle { from { opacity:0; transform:scale(.98); } to { opacity:1; transform:none; } }
+@media (prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+  *, *::before, *::after { transition-duration:.01ms !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; }
+  /* Soft fades only: no movement, zoom, blur or spin */
+  .js [data-reveal] { opacity:0; transition:opacity .7s ease !important; transition-delay:calc(var(--i,0)*70ms) !important; }
+  .js [data-reveal].in { opacity:1; }
+  .hero .eyebrow, .hero .title, .hero .intro, .hero .facts, .hero .ctas, .hero-photo { animation:fade .8s ease both !important; }
+  .hero .title { animation-delay:.1s !important; } .hero .intro { animation-delay:.2s !important; } .hero .facts, .hero .ctas { animation-delay:.3s !important; } .hero-photo { animation-delay:.35s !important; }
+}
+@keyframes rise { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
+@keyframes settle { from { opacity:0; transform:translateY(24px) scale(.94); } to { opacity:1; transform:none; } }
+@keyframes fade { from { opacity:0; } to { opacity:1; } }
