@@ -1,6 +1,6 @@
 # Rama Makeover (रमा मेकओव्हर)
 
-> Beauty parlour in Datta Nagar, Dighi, near Datta Mandir, Pimpri-Chinchwad (Pune), Maharashtra 411015, India. Offers head lice removal for children and adults, plus facials, hydra facial, threading, waxing, haircut, bridal makeup and festival and occasion makeup.
+> Beauty parlour in Datta Nagar, Dighi, near Datta Mandir, Pimpri-Chinchwad (Pune), Maharashtra 411015, India. Offers bridal and party makeup, facials, hydra facial, threading, waxing, hair care, manicure, pedicure, massage, and head lice removal for children and adults.
 
 ## Pages
 - [Home page (English)](https://ramamakeover.github.io/): services, head lice facts, booking steps, address, hours, FAQ
@@ -30,13 +30,9 @@
 - How do I book an appointment? Call or WhatsApp 9372448675 with your preferred date and time; the parlour confirms the appointment. See https://ramamakeover.github.io/#book
 
 ## Services
-- Head lice removal (डोक्यातील उवा काढण्याची सेवा) – for children and adults
-- Facial
-- Hydra facial
-- Threading
-- Waxing
-- Haircut
-- Bridal makeup
-- Festival and occasion makeup
+- Makeup & bridal: bridal makeup, party makeup, festival & occasion makeup, bridal hairstyle, saree draping, pre-bridal packages
+- Face & skin: facial, hydra facial, skin care & clean-up, tan removal (D-tan), eyebrow threading, eyebrow shaping, eyelashes
+- Hair: haircut, hairstyling, hair colouring, hair spa, hair wash & conditioning, hair smoothening & keratin, head lice removal (डोक्यातील उवा काढण्याची सेवा) for children and adults
+- Hands, feet & body: manicure, pedicure, waxing, body waxing, massage
 
 Charges depend on the service; call or WhatsApp 9372448675 for details and appointments.

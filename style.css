@@ -396,3 +396,16 @@ h2.title { margin-top:0; }
 .crumbs a { color:inherit; }
 .svc-photo { border-radius:var(--r-card); overflow:hidden; }
 .svc-photo img { display:block; width:100%; height:auto; }
+
+/* "All services" box under the service cards */
+.all-svc { margin-top:40px; background:var(--white); border:1px solid var(--border); border-radius:var(--r-card); padding:28px; }
+.all-svc h3 { font-family:var(--head); font-weight:400; font-size:28px; }
+.all-svc .groups { display:grid; gap:24px; margin-top:16px; }
+.all-svc h4 { font-size:13px; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--rose-ink); }
+:lang(mr) .all-svc h4 { letter-spacing:.02em; font-size:15px; }
+.all-svc ul { list-style:none; padding:0; margin-top:8px; }
+.all-svc li { padding:7px 0; border-bottom:1px solid var(--border); color:var(--cocoa); }
+.all-svc li:last-child { border-bottom:0; }
+.all-svc a { color:var(--rose-ink); font-weight:700; }
+@media (min-width:600px) { .all-svc .groups { grid-template-columns:1fr 1fr; } }
+@media (min-width:1024px) { .all-svc .groups { grid-template-columns:repeat(4,1fr); } }
