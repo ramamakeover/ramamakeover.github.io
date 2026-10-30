@@ -135,7 +135,7 @@ section.block { padding-top:96px; padding-bottom:96px; }
 .svc { position:relative; border-radius:24px; overflow:hidden; aspect-ratio:4/5; background:var(--cream); isolation:isolate; }
 .svc img { width:100%; height:100%; object-fit:cover; transition:transform .3s var(--ease); }
 .svc:hover img { transform:scale(1.03); }
-.svc .label { position:absolute; left:12px; right:12px; bottom:12px; background:rgba(255,255,255,.86); border-radius:16px; padding:16px 18px; }
+.svc .label { position:absolute; left:12px; right:12px; bottom:12px; background:rgba(255,255,255,.86); border-radius:12px; padding:16px 18px; }
 @supports (backdrop-filter:blur(10px)) { .svc .label { background:rgba(255,255,255,.8); backdrop-filter:blur(14px); } }
 .svc h3 { font-family:var(--head); font-weight:400; font-size:24px; line-height:1.2; }
 .svc p { font-size:15px; line-height:1.5; margin-top:4px; color:var(--cocoa); }
