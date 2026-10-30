@@ -334,8 +334,8 @@ footer .small { margin-top:40px; padding-top:20px; border-top:1px solid rgba(255
 /* Motion — only transform, opacity and clip-path are animated (smooth on budget phones).
    Full scroll reveals when motion is allowed; opacity-only soft fades under "reduce motion". */
 @media (prefers-reduced-motion:no-preference) {
-  .hero .eyebrow, .hero .title, .hero .intro, .hero .facts, .hero .ctas { animation:rise .6s var(--ease) both; }
-  .hero .title { animation-delay:.08s; } .hero .intro { animation-delay:.16s; } .hero .facts { animation-delay:.22s; } .hero .ctas { animation-delay:.28s; }
+  .hero .eyebrow, .hero .title, .hero .facts, .hero .ctas { animation:rise .6s var(--ease) both; }
+  .hero .title { animation-delay:.08s; } .hero .facts { animation-delay:.22s; } .hero .ctas { animation-delay:.28s; }
   .hero-photo { animation:settle .9s var(--ease) .25s both; }
 
   /* Base reveal: rise + fade, staggered by --i */
@@ -374,11 +374,12 @@ footer .small { margin-top:40px; padding-top:20px; border-top:1px solid rgba(255
   /* Soft fades only: no movement, zoom, blur or spin */
   .js [data-reveal] { opacity:0; transition:opacity .7s ease !important; transition-delay:calc(var(--i,0)*70ms) !important; }
   .js [data-reveal].in { opacity:1; }
-  .hero .eyebrow, .hero .title, .hero .intro, .hero .facts, .hero .ctas, .hero-photo { animation:fade .8s ease both !important; }
-  .hero .title { animation-delay:.1s !important; } .hero .intro { animation-delay:.2s !important; } .hero .facts, .hero .ctas { animation-delay:.3s !important; } .hero-photo { animation-delay:.35s !important; }
+  .hero .eyebrow, .hero .title, .hero .facts, .hero .ctas { animation:fade .8s ease both !important; }
+  .hero-photo { animation:none !important; }
+  .hero .title { animation-delay:.1s !important; } .hero .facts, .hero .ctas { animation-delay:.3s !important; }
 }
 @keyframes rise { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
-@keyframes settle { from { opacity:0; transform:translateY(24px) scale(.94); } to { opacity:1; transform:none; } }
+@keyframes settle { from { transform:translateY(24px) scale(.94); } to { transform:none; } } /* no opacity: the hero photo is the LCP element */
 @keyframes fade { from { opacity:0; } to { opacity:1; } }
 
 /* Headings carry their descriptive eyebrow inside the H2 */
