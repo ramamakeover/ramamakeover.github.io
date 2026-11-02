@@ -16,8 +16,7 @@ if ("IntersectionObserver" in window) {
 
 var header = document.querySelector(".site-header");
 function onScroll() { header.classList.toggle("scrolled", window.scrollY > 8); }
-window.addEventListener("scroll", onScroll, { passive: true });
-onScroll();
+if (header) { window.addEventListener("scroll", onScroll, { passive: true }); onScroll(); }
 
 var btn = document.querySelector(".menu-btn");
 var nav = document.getElementById("site-nav");
@@ -27,6 +26,7 @@ function setOpen(open) {
   nav.hidden = !open;
 }
 function syncToWidth() { if (mq.matches) setOpen(false); else nav.hidden = false; }
+if (btn && nav) {
 btn.addEventListener("click", function () { setOpen(btn.getAttribute("aria-expanded") !== "true"); });
 nav.addEventListener("click", function (e) { if (e.target.closest("a") && mq.matches) setOpen(false); });
 document.addEventListener("keydown", function (e) {
@@ -34,6 +34,7 @@ document.addEventListener("keydown", function (e) {
 });
 mq.addEventListener("change", syncToWidth);
 syncToWidth();
+}
 
 var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 

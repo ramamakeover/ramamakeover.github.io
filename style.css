@@ -410,3 +410,13 @@ h2.title { margin-top:0; }
 .all-svc a { color:var(--rose-ink); font-weight:700; }
 @media (min-width:600px) { .all-svc .groups { grid-template-columns:1fr 1fr; } }
 @media (min-width:1024px) { .all-svc .groups { grid-template-columns:repeat(4,1fr); } }
+
+/* Review pages and the owner's review-request tool */
+.rv-tips { margin-top:24px; }
+.tool { max-width:640px; }
+.tool form { display:grid; gap:6px; margin-top:24px; }
+.tool label, .tool legend { font-weight:700; margin-top:14px; }
+.tool small { font-weight:400; color:var(--muted); }
+.tool fieldset { border:0; padding:0; margin:0; }
+.tool input[type=text], .tool input[type=tel], .tool select, .tool textarea { width:100%; min-height:48px; padding:10px 14px; border:1px solid var(--border); border-radius:var(--r-btn); background:var(--white); font:inherit; color:var(--cocoa); }
+.tool .rq-radio { display:inline-flex; align-items:center; gap:8px; min-height:44px; margin:0 20px 0 0; font-weight:400; }
