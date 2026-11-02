@@ -2,9 +2,9 @@
    Layout inspired by modern salon templates (floating nav, centred serif hero with an italic second line,
    arch images, photo service cards); tokens from RAMA_MAKEOVER_UI_UX_DESIGN.md.
    Contrast: dusty rose #A66F78 is for large text/decoration only; small rose text uses --rose-ink (5.2:1 on ivory).
-   Muted grey fails on cream (4.3:1), so cream sections use cocoa text. */
+   Muted grey fails on the blush sections, so they use cocoa text. */
 :root {
-  --bg:#FDFCFA; --ivory:#FDFCFA; --cream:#F1E9DF; --white:#FFFFFF; --border:#E7DED5;
+  --bg:#FDFCFA; --ivory:#FDFCFA; --cream:#F6ECEC; --white:#FFFFFF; --border:#E7DED5;
   --cocoa:#352B2A; --cocoa-2:#4A3D3B; --muted:#746B67;
   --rose:#A66F78; --rose-ink:#8E5A63; --blush:#D9A6A0; --sage:#A8B5A0;
   --head:"DM Serif Display","Tiro Devanagari Marathi","Nirmala UI",Georgia,serif;
