@@ -2,6 +2,8 @@
 
 > Beauty parlour in Datta Nagar, Dighi, near Datta Mandir, Pimpri-Chinchwad (Pune), Maharashtra 411015, India. Offers bridal and party makeup, facials, hydra facial, threading, waxing, hair care, manicure, pedicure, massage, and head lice removal for children and adults.
 
+Full text of every page: https://ramamakeover.github.io/llms-full.txt
+
 ## Pages
 - [Home page (English)](https://ramamakeover.github.io/): services, head lice facts, booking steps, address, hours, FAQ
 - [Home page (Marathi)](https://ramamakeover.github.io/mr/): the same information in Marathi
