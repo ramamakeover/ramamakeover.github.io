@@ -2,3 +2,5 @@
 *.md
 # Canva source file; the site uses images/logo-light.webp and images/logo-dark.webp.
 images/Logo.svg
+# QA screenshots from test scripts; never publish them.
+shots/
