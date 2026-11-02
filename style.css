@@ -418,5 +418,8 @@ h2.title { margin-top:0; }
 .tool label, .tool legend { font-weight:700; margin-top:14px; }
 .tool small { font-weight:400; color:var(--muted); }
 .tool fieldset { border:0; padding:0; margin:0; }
-.tool input[type=text], .tool input[type=tel], .tool select, .tool textarea { width:100%; min-height:48px; padding:10px 14px; border:1px solid var(--border); border-radius:var(--r-btn); background:var(--white); font:inherit; color:var(--cocoa); }
+.tool input[type=text], .tool input[type=tel], .tool select, .tool textarea, .rv-write textarea { width:100%; min-height:48px; padding:10px 14px; border:1px solid var(--border); border-radius:var(--r-btn); background:var(--white); font:inherit; color:var(--cocoa); }
 .tool .rq-radio { display:inline-flex; align-items:center; gap:8px; min-height:44px; margin:0 20px 0 0; font-weight:400; }
+.rv-write label { display:block; font-weight:700; margin:14px 0 6px; }
+.rv-write .ctas { margin-top:16px; }
+.rv-mic { font-size:14px; color:var(--muted); margin:0 0 8px; }
