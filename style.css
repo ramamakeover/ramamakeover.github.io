@@ -32,7 +32,7 @@ img, svg { display:block; max-width:100%; }
 
 /* Floating header */
 .site-header { position:sticky; top:0; z-index:40; padding:12px 0; }
-.site-header .bar-inner { display:flex; align-items:center; gap:12px; min-height:64px; padding:0 10px 0 18px; background:rgba(255,255,255,.72); border:1px solid var(--border); border-radius:20px; transition:background-color .2s, box-shadow .2s; }
+.site-header .bar-inner { display:flex; align-items:center; gap:12px; min-height:64px; padding:0 10px 0 18px; background:rgba(255,255,255,.72); border:1px solid var(--border); border-radius:20px; transition:background-color .2s, box-shadow .2s, min-height .25s ease; }
 @supports (backdrop-filter:blur(10px)) { .site-header .bar-inner { backdrop-filter:blur(14px) saturate(1.2); } }
 .site-header.scrolled .bar-inner { background:rgba(255,255,255,.9); box-shadow:0 10px 30px rgba(53,43,42,.08); }
 .logo-link { display:inline-flex; align-items:center; min-height:48px; }
@@ -423,3 +423,13 @@ h2.title { margin-top:0; }
 .rv-write label { display:block; font-weight:700; margin:14px 0 6px; }
 .rv-write .ctas { margin-top:16px; }
 .rv-mic { font-size:14px; color:var(--muted); margin:0 0 8px; }
+
+/* Header shrinks while scrolling. The header box keeps its height, so nothing below it moves (no layout shift);
+   the freed strip under the bar is see-through and lets taps pass to the page. */
+.site-header { transition:padding .25s ease; }
+.logo-link img { transition:height .25s ease; }
+.site-header.scrolled { padding:4px 0 28px; pointer-events:none; }
+.site-header.scrolled .bar-inner { min-height:56px; pointer-events:auto; }
+.site-header.scrolled .logo-link img { height:40px; }
+@media (max-width:360px) { .site-header.scrolled { padding:4px 0 20px; } }
+@media (prefers-reduced-motion:reduce) { .site-header, .site-header .bar-inner, .logo-link img { transition:none; } }
