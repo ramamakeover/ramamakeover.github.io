@@ -100,7 +100,7 @@ img, svg { display:block; max-width:100%; }
 /* Letter-spacing breaks Devanagari conjuncts, so Marathi labels keep normal spacing. */
 :lang(mr) .eyebrow, :lang(mr) .contact h3, :lang(mr) footer h3 { letter-spacing:.02em; font-size:15px; }
 .center .eyebrow::after { content:""; width:32px; height:1px; background:var(--rose); }
-.title { font-family:var(--head); font-weight:400; font-size:clamp(34px,5.6vw,56px); line-height:1.08; margin-top:16px; }
+.title { font-family:var(--head); font-weight:400; font-size:clamp(34px,5.6vw,56px); line-height:1.08; margin-top:16px; text-wrap:balance; }
 .intro { color:var(--muted); margin-top:20px; max-width:56ch; }
 .alt .intro, .alt p { color:var(--cocoa); }
 
