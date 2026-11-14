@@ -24,9 +24,9 @@
 <meta name="theme-color" content="#FDFCFA">
 <link rel="icon" href="../icon-48.png?v=3" type="image/png" sizes="48x48">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png?v=3">
-<link rel="stylesheet" href="../style.css?v=6a6d0842-e9c745">
+<link rel="stylesheet" href="../style.css?v=8a189cba-e9c745">
 <script>(function(d,n,q){d.classList.add("js");q=/[?&]diwali=(on|off)/.exec(location.search);if(q?q[1]=="on":n>=Date.parse("2026-11-08T00:00:00+05:30")&&n<Date.parse("2026-11-16T00:00:00+05:30"))d.classList.add("diwali")})(document.documentElement,Date.now())</script>
-<script src="../script.js?v=6a6d0842-e9c745" defer></script>
+<script src="../script.js?v=8a189cba-e9c745" defer></script>
 
 </head>
 <body>
@@ -55,6 +55,10 @@
       </div>
       <div class="facts-card rv-tips"><h3>Not sure what to write? You could mention:</h3><ul><li>Which service you had (for example facial, bridal makeup or lice removal)</li><li>How the consultation and the service felt</li><li>The parlour itself: cleanliness, comfort, timing</li><li>Where you came from (for example Dighi, Bhosari or Moshi)</li><li>Anything we could do better</li><li>You can add a photo of your look, too</li></ul><p class="src">Please write in your own words. It takes about a minute, and you can write in Marathi or English.</p></div>
       <div class="facts-card rv-tips rv-write"><h3>Want to write it here first?</h3><p>Type your review in your own words below. The button copies it and opens Google: just paste it there and choose your stars.</p>
+        <label for="rv-svc">Help me write: which service did you have?</label>
+        <select id="rv-svc"><option value="none">Choose a service (optional)</option><optgroup label="Makeup & bridal"><option value="makeup">Bridal makeup</option><option value="makeup">Party makeup</option><option value="makeup">Festival & occasion makeup</option><option value="makeup">Bridal hairstyle</option><option value="makeup">Saree draping</option><option value="makeup">Pre-bridal packages</option></optgroup><optgroup label="Face & skin"><option value="skin">Facial</option><option value="skin">Hydra facial</option><option value="skin">Skin care & clean-up</option><option value="skin">Tan removal</option><option value="skin">Eyebrow threading</option><option value="skin">Eyebrow shaping</option><option value="skin">Eyelashes</option></optgroup><optgroup label="Hair"><option value="hair">Haircut</option><option value="hair">Hairstyling</option><option value="hair">Hair colouring</option><option value="hair">Hair spa</option><option value="hair">Hair wash & conditioning</option><option value="hair">Hair smoothening & keratin</option><option value="lice">Head lice removal</option></optgroup><optgroup label="Hands, feet & body"><option value="body">Manicure</option><option value="body">Pedicure</option><option value="body">Waxing</option><option value="body">Body waxing</option><option value="body">Massage</option></optgroup></select>
+        <p class="rv-mic">Answer these in your own words in the box below:</p>
+        <ul id="rv-q" aria-live="polite"><li>Which service did you have?</li><li>How did the service feel?</li><li>Where did you come from (for example Dighi, Bhosari or Moshi)?</li></ul>
         <label for="rv-text">Your review</label>
         <p class="rv-mic" id="rv-mic">Don't want to type? Tap the 🎤 on your keyboard and just speak.</p>
         <textarea id="rv-text" rows="6" maxlength="4000" aria-describedby="rv-mic"></textarea>
@@ -65,6 +69,11 @@
   </section>
 </main>
 <script>
+var RVQ = {"none": ["Which service did you have?", "How did the service feel?"], "makeup": ["How did your look turn out?", "How long did it last through the day or the event?", "How did the consultation help you choose the look?"], "skin": ["How did your skin feel afterwards?", "How comfortable was the treatment?", "How was the parlour: clean, comfortable, on time?"], "hair": ["How do you like your hair?", "Did we understand what you wanted?", "How was the parlour: clean, comfortable, on time?"], "lice": ["How comfortable was the visit for you or your child?", "Was the process explained clearly?", "No need to share any personal details."], "body": ["How relaxing was it?", "How was the parlour: clean, comfortable, on time?", "How long did it take?"], "area": "Where did you come from (for example Dighi, Bhosari or Moshi)?"};
+document.getElementById("rv-svc").addEventListener("change", function () {
+  var ul = document.getElementById("rv-q"); ul.textContent = "";
+  RVQ[this.value].concat(RVQ.area).forEach(function (t) { var li = document.createElement("li"); li.textContent = t; ul.appendChild(li); });
+});
 document.getElementById("rv-go").addEventListener("click", function () {
   var t = document.getElementById("rv-text"), s = document.getElementById("rv-status"), v = t.value.trim();
   if (!v) return;
@@ -81,7 +90,7 @@ document.getElementById("rv-go").addEventListener("click", function () {
       <div><h3>Visit</h3><p>5/1/73, Datta Nagar, near Datta Mandir, Dighi, Pimpri-Chinchwad, Maharashtra 411015</p><p><a href="https://maps.app.goo.gl/stxkixWMnrQmzfCd6">Get directions on Google Maps</a></p><p><a href="tel:+919372448675">9372448675</a></p></div>
       <div><h3>Hours</h3><p>Open every day, 10 am to 9 pm</p><p><a href="../review/">Write a review</a></p></div>
     </div>
-    <div class="small"><span>© 2026 Rama Makeover</span><span>Updated: <time datetime="2026-11-08">8 November 2026</time></span><span>Representative photos: <a href="https://unsplash.com/license">Unsplash</a></span><div class="lang-switch on-dark" role="group" aria-label="Choose language"><a href="../mr/review/" lang="mr" hreflang="mr"><span aria-hidden="true">म</span><span class="vh">मराठी</span></a><a href="./" lang="en" hreflang="en" aria-current="page"><span aria-hidden="true">EN</span><span class="vh">English</span></a></div></div>
+    <div class="small"><span>© 2026 Rama Makeover</span><span>Updated: <time datetime="2026-11-14">14 November 2026</time></span><span>Representative photos: <a href="https://unsplash.com/license">Unsplash</a></span><div class="lang-switch on-dark" role="group" aria-label="Choose language"><a href="../mr/review/" lang="mr" hreflang="mr"><span aria-hidden="true">म</span><span class="vh">मराठी</span></a><a href="./" lang="en" hreflang="en" aria-current="page"><span aria-hidden="true">EN</span><span class="vh">English</span></a></div></div>
   </div>
 </footer>
 

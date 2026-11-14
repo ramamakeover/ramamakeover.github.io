@@ -24,9 +24,9 @@
 <meta name="theme-color" content="#FDFCFA">
 <link rel="icon" href="../../icon-48.png?v=3" type="image/png" sizes="48x48">
 <link rel="apple-touch-icon" href="../../apple-touch-icon.png?v=3">
-<link rel="stylesheet" href="../../style.css?v=6a6d0842-e9c745">
+<link rel="stylesheet" href="../../style.css?v=8a189cba-e9c745">
 <script>(function(d,n,q){d.classList.add("js");q=/[?&]diwali=(on|off)/.exec(location.search);if(q?q[1]=="on":n>=Date.parse("2026-11-08T00:00:00+05:30")&&n<Date.parse("2026-11-16T00:00:00+05:30"))d.classList.add("diwali")})(document.documentElement,Date.now())</script>
-<script src="../../script.js?v=6a6d0842-e9c745" defer></script>
+<script src="../../script.js?v=8a189cba-e9c745" defer></script>
 
 </head>
 <body>
@@ -55,6 +55,10 @@
       </div>
       <div class="facts-card rv-tips"><h3>काय लिहायचे सुचत नाही? हे लिहू शकता:</h3><ul><li>तुम्ही कोणती सेवा घेतली (उदा. फेशियल, ब्रायडल मेकअप, उवा काढणे)</li><li>सल्ला आणि सेवा कशी वाटली</li><li>पार्लर: स्वच्छता, आराम, वेळ</li><li>तुम्ही कुठून आलात (उदा. दिघी, भोसरी, मोशी)</li><li>आम्ही काय अधिक चांगले करू शकतो</li><li>तुमच्या लूकचा फोटोही जोडू शकता</li></ul><p class="src">कृपया तुमच्या शब्दांत लिहा. फक्त एक मिनिट लागतो, आणि मराठी किंवा इंग्रजीत लिहू शकता.</p></div>
       <div class="facts-card rv-tips rv-write"><h3>आधी इथे लिहायचे आहे?</h3><p>खाली तुमच्या शब्दांत रिव्ह्यू लिहा. बटण दाबल्यावर तो कॉपी होईल आणि Google उघडेल. तिथे पेस्ट करा आणि स्टार निवडा.</p>
+        <label for="rv-svc">लिहायला मदत: तुम्ही कोणती सेवा घेतली?</label>
+        <select id="rv-svc"><option value="none">सेवा निवडा (ऐच्छिक)</option><optgroup label="मेकअप आणि ब्रायडल"><option value="makeup">ब्रायडल मेकअप</option><option value="makeup">पार्टी मेकअप</option><option value="makeup">सण-समारंभासाठी मेकअप</option><option value="makeup">ब्रायडल हेअरस्टाईल</option><option value="makeup">साडी ड्रेपिंग</option><option value="makeup">प्री-ब्रायडल पॅकेज</option></optgroup><optgroup label="चेहरा आणि त्वचा"><option value="skin">फेशियल</option><option value="skin">हायड्रा फेशियल</option><option value="skin">स्किन केअर आणि क्लीन-अप</option><option value="skin">डी-टॅन</option><option value="skin">आयब्रो थ्रेडिंग</option><option value="skin">आयब्रो शेपिंग</option><option value="skin">आयलॅशेस</option></optgroup><optgroup label="केस"><option value="hair">हेअरकट</option><option value="hair">हेअरस्टाईलिंग</option><option value="hair">हेअर कलर</option><option value="hair">हेअर स्पा</option><option value="hair">हेअर वॉश आणि कंडिशनिंग</option><option value="hair">हेअर स्मूदनिंग आणि केराटिन</option><option value="lice">उवा काढणे</option></optgroup><optgroup label="हात, पाय आणि शरीर"><option value="body">मॅनिक्युअर</option><option value="body">पेडिक्युअर</option><option value="body">वॅक्सिंग</option><option value="body">बॉडी वॅक्सिंग</option><option value="body">मसाज</option></optgroup></select>
+        <p class="rv-mic">या प्रश्नांची उत्तरे खालील बॉक्समध्ये तुमच्या शब्दांत लिहा:</p>
+        <ul id="rv-q" aria-live="polite"><li>तुम्ही कोणती सेवा घेतली?</li><li>सेवा कशी वाटली?</li><li>तुम्ही कुठून आलात (उदा. दिघी, भोसरी, मोशी)?</li></ul>
         <label for="rv-text">तुमचा रिव्ह्यू</label>
         <p class="rv-mic" id="rv-mic">टाइप करायचे नसेल तर? कीबोर्डवरील 🎤 माइक दाबा आणि बोला.</p>
         <textarea id="rv-text" rows="6" maxlength="4000" aria-describedby="rv-mic"></textarea>
@@ -65,6 +69,11 @@
   </section>
 </main>
 <script>
+var RVQ = {"none": ["तुम्ही कोणती सेवा घेतली?", "सेवा कशी वाटली?"], "makeup": ["तुमचा लूक कसा झाला?", "दिवसभर किंवा कार्यक्रमात लूक कसा टिकला?", "लूक निवडताना सल्ल्याची कशी मदत झाली?"], "skin": ["नंतर त्वचा कशी वाटली?", "ट्रीटमेंट किती आरामदायी होती?", "पार्लर कसे वाटले: स्वच्छता, आराम, वेळ?"], "hair": ["तुमचे केस तुम्हाला कसे वाटले?", "तुम्हाला काय हवे होते ते आम्हाला नीट समजले का?", "पार्लर कसे वाटले: स्वच्छता, आराम, वेळ?"], "lice": ["तुम्हाला किंवा तुमच्या मुलाला भेट किती आरामदायी वाटली?", "प्रक्रिया नीट समजावून सांगितली का?", "वैयक्तिक माहिती लिहायची गरज नाही."], "body": ["किती आराम मिळाला?", "पार्लर कसे वाटले: स्वच्छता, आराम, वेळ?", "किती वेळ लागला?"], "area": "तुम्ही कुठून आलात (उदा. दिघी, भोसरी, मोशी)?"};
+document.getElementById("rv-svc").addEventListener("change", function () {
+  var ul = document.getElementById("rv-q"); ul.textContent = "";
+  RVQ[this.value].concat(RVQ.area).forEach(function (t) { var li = document.createElement("li"); li.textContent = t; ul.appendChild(li); });
+});
 document.getElementById("rv-go").addEventListener("click", function () {
   var t = document.getElementById("rv-text"), s = document.getElementById("rv-status"), v = t.value.trim();
   if (!v) return;
@@ -81,7 +90,7 @@ document.getElementById("rv-go").addEventListener("click", function () {
       <div><h3>भेट द्या</h3><p>5/1/73, दत्त नगर, दत्त मंदिराजवळ, दिघी, पिंपरी-चिंचवड, महाराष्ट्र 411015</p><p><a href="https://maps.app.goo.gl/stxkixWMnrQmzfCd6">Google Maps वर रस्ता पाहा</a></p><p><a href="tel:+919372448675">9372448675</a></p></div>
       <div><h3>वेळ</h3><p>दररोज सकाळी 10 ते रात्री 9</p><p><a href="../review/">रिव्ह्यू लिहा</a></p></div>
     </div>
-    <div class="small"><span>© 2026 Rama Makeover</span><span>अपडेट: <time datetime="2026-11-08">8 नोव्हेंबर 2026</time></span><span>प्रातिनिधिक फोटो: <a href="https://unsplash.com/license">Unsplash</a></span><div class="lang-switch on-dark" role="group" aria-label="भाषा निवडा"><a href="./" lang="mr" hreflang="mr" aria-current="page"><span aria-hidden="true">म</span><span class="vh">मराठी</span></a><a href="../../review/" lang="en" hreflang="en"><span aria-hidden="true">EN</span><span class="vh">English</span></a></div></div>
+    <div class="small"><span>© 2026 Rama Makeover</span><span>अपडेट: <time datetime="2026-11-14">14 नोव्हेंबर 2026</time></span><span>प्रातिनिधिक फोटो: <a href="https://unsplash.com/license">Unsplash</a></span><div class="lang-switch on-dark" role="group" aria-label="भाषा निवडा"><a href="./" lang="mr" hreflang="mr" aria-current="page"><span aria-hidden="true">म</span><span class="vh">मराठी</span></a><a href="../../review/" lang="en" hreflang="en"><span aria-hidden="true">EN</span><span class="vh">English</span></a></div></div>
   </div>
 </footer>
 
