@@ -49,6 +49,7 @@
         <input id="rq-phone" type="tel" inputmode="numeric" autocomplete="off" maxlength="14" placeholder="98XXXXXXXX">
         <label for="rq-msg">मेसेज <span lang="en">· Message</span> <small>(बदलू शकता · you can edit)</small></label>
         <textarea id="rq-msg" rows="10"></textarea>
+        <div class="ctas"><span id="rq-tone"></span><button id="rq-alt" class="btn btn-secondary" type="button">दुसरा मेसेज · Rephrase</button></div>
         <div class="ctas"><a id="rq-wa" class="btn btn-primary" href="https://wa.me/" target="_blank" rel="noopener"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg>WhatsApp उघडा · Open</a><button id="rq-copy" class="btn btn-secondary" type="button">कॉपी · Copy</button></div>
         <p class="hello-note" id="rq-status" role="status" aria-live="polite"></p>
       </form>
@@ -57,15 +58,44 @@
 </main>
 <script>
 (function () {
-  var NAMES = [["Bridal makeup", "ब्रायडल मेकअप"], ["Party makeup", "पार्टी मेकअप"], ["Festival & occasion makeup", "सण-समारंभाच्या मेकअप"], ["Bridal hairstyle", "ब्रायडल हेअरस्टाईल"], ["Saree draping", "साडी ड्रेपिंग"], ["Pre-bridal packages", "प्री-ब्रायडल पॅकेज"], ["Facial", "फेशियल"], ["Hydra facial", "हायड्रा फेशियल"], ["Skin care & clean-up", "स्किन केअर आणि क्लीन-अप"], ["Tan removal (D-tan)", "डी-टॅन"], ["Eyebrow threading", "आयब्रो थ्रेडिंग"], ["Eyebrow shaping", "आयब्रो शेपिंग"], ["Eyelashes", "आयलॅशेस"], ["Haircut", "हेअरकट"], ["Hairstyling", "हेअरस्टाईलिंग"], ["Hair colouring", "हेअर कलर"], ["Hair spa", "हेअर स्पा"], ["Hair wash & conditioning", "हेअर वॉश आणि कंडिशनिंग"], ["Hair smoothening & keratin", "हेअर स्मूदनिंग आणि केराटिन"], ["Head lice removal (children & adults)", "उवा काढण्या"], ["Manicure", "मॅनिक्युअर"], ["Pedicure", "पेडिक्युअर"], ["Waxing", "वॅक्सिंग"], ["Body waxing", "बॉडी वॅक्सिंग"], ["Massage", "मसाज"]], LINK = "https://g.page/r/Cc-qnAAeFY33ECE/review";
-  var f = document.getElementById("rq"), msg = document.getElementById("rq-msg"), wa = document.getElementById("rq-wa"), edited = false;
+  var NAMES = [["Bridal makeup", "ब्रायडल मेकअप", "makeup"], ["Party makeup", "पार्टी मेकअप", "makeup"], ["Festival & occasion makeup", "सण-समारंभाच्या मेकअप", "makeup"], ["Bridal hairstyle", "ब्रायडल हेअरस्टाईल", "makeup"], ["Saree draping", "साडी ड्रेपिंग", "makeup"], ["Pre-bridal packages", "प्री-ब्रायडल पॅकेज", "makeup"], ["Facial", "फेशियल", "skin"], ["Hydra facial", "हायड्रा फेशियल", "skin"], ["Skin care & clean-up", "स्किन केअर आणि क्लीन-अप", "skin"], ["Tan removal (D-tan)", "डी-टॅन", "skin"], ["Eyebrow threading", "आयब्रो थ्रेडिंग", "skin"], ["Eyebrow shaping", "आयब्रो शेपिंग", "skin"], ["Eyelashes", "आयलॅशेस", "skin"], ["Haircut", "हेअरकट", "hair"], ["Hairstyling", "हेअरस्टाईलिंग", "hair"], ["Hair colouring", "हेअर कलर", "hair"], ["Hair spa", "हेअर स्पा", "hair"], ["Hair wash & conditioning", "हेअर वॉश आणि कंडिशनिंग", "hair"], ["Hair smoothening & keratin", "हेअर स्मूदनिंग आणि केराटिन", "hair"], ["Head lice removal (children & adults)", "उवा काढण्या", "lice"], ["Manicure", "मॅनिक्युअर", "body"], ["Pedicure", "पेडिक्युअर", "body"], ["Waxing", "वॅक्सिंग", "body"], ["Body waxing", "बॉडी वॅक्सिंग", "body"], ["Massage", "मसाज", "body"]], LINK = "https://g.page/r/Cc-qnAAeFY33ECE/review";
+  var f = document.getElementById("rq"), msg = document.getElementById("rq-msg"), wa = document.getElementById("rq-wa"), edited = false, k = 0;
   function lang() { return f.querySelector("input[name=rq-lang]:checked").value; }
+  var HINT = {
+    en: { makeup: "how your look turned out and how it lasted through the day", skin: "how your skin felt afterwards and how comfortable the treatment was",
+          hair: "how you like your hair and whether we understood what you wanted", lice: "how comfortable the visit was (no personal details needed)",
+          body: "how relaxing it was and how you found the parlour", none: "the service you had and how it went" },
+    mr: { makeup: "लूक कसा झाला आणि दिवसभर कसा टिकला", skin: "नंतर त्वचा कशी वाटली आणि ट्रीटमेंट किती आरामदायी होती",
+          hair: "केस कसे वाटले आणि तुम्हाला काय हवे होते ते आम्हाला नीट समजले का", lice: "भेट किती आरामदायी वाटली (वैयक्तिक माहिती लिहायची गरज नाही)",
+          body: "किती आराम मिळाला आणि पार्लर कसे वाटले", none: "कोणती सेवा घेतली आणि अनुभव कसा वाटला" } };
+  function hi(n) { return "Hi" + (n ? " " + n : ""); }
+  function forS(s) { return s ? " for your " + s : ""; }
+  function nm(n) { return n ? " " + n : ""; }
+  function sathi(s) { return s ? s + "साठी " : ""; }
+  var TONES = {
+    en: [
+      ["Warm", function (n, s, t) { return hi(n) + ", thank you for visiting Rama Makeover" + forS(s) + "! If you have a minute, please share your honest experience on Google. " + t + " It helps us improve and helps people nearby find us: " + LINK; }],
+      ["Short", function (n, s) { return hi(n) + ", thanks for coming in" + forS(s) + "! Could you leave us a quick Google review? " + LINK; }],
+      ["Friendly", function (n, s, t) { return hi(n) + "! Thank you for choosing us" + forS(s) + ". If you have two minutes, we'd love to hear how it went on Google. " + t + " Here's the link: " + LINK; }],
+      ["Polite", function (n, s, t) { return "Dear " + (n || "customer") + ", thank you for choosing Rama Makeover" + forS(s) + ". We would be grateful if you could share your honest feedback on Google. " + t + " Your review helps us serve you better and helps others in Dighi find us. Review link: " + LINK; }],
+      ["Personal", function (n, s) { return hi(n) + ", it's Rama Makeover in Dighi. Thank you for coming in" + forS(s) + ". An honest Google review from you would mean a lot to a small parlour like ours: " + LINK; }]
+    ],
+    mr: [
+      ["आपुलकीचा", function (n, s, t) { return "नमस्कार" + nm(n) + ", रमा मेकओव्हरमध्ये " + sathi(s) + "आल्याबद्दल मनापासून धन्यवाद! वेळ असल्यास, कृपया Google वर तुमचा प्रामाणिक अनुभव लिहा. " + t + " त्यामुळे आम्हाला सुधारणा करता येते आणि जवळपासच्या लोकांना आम्हाला शोधणे सोपे होते: " + LINK; }],
+      ["छोटा", function (n, s) { return "नमस्कार" + nm(n) + ", " + sathi(s) + "आल्याबद्दल धन्यवाद! Google वर एक छोटासा रिव्ह्यू लिहाल का? " + LINK; }],
+      ["मैत्रीपूर्ण", function (n, s, t) { return "हाय" + nm(n) + "! रमा मेकओव्हरला " + sathi(s) + "भेट दिल्याबद्दल धन्यवाद. दोन मिनिटे वेळ असेल तर Google वर तुमचा अनुभव नक्की सांगा. " + t + " लिंक: " + LINK; }],
+      ["औपचारिक", function (n, s, t) { return "नमस्कार" + (n ? " " + n + " जी" : "") + ", रमा मेकओव्हरची " + sathi(s) + "निवड केल्याबद्दल आभार. आपला प्रामाणिक अभिप्राय Google वर लिहिल्यास आम्ही आभारी राहू. " + t + " आपल्या रिव्ह्यूमुळे आम्हाला अधिक चांगली सेवा देता येते आणि दिघीतील इतरांना आम्हाला शोधता येते. रिव्ह्यू लिंक: " + LINK; }],
+      ["वैयक्तिक", function (n, s) { return "नमस्कार" + nm(n) + ", रमा मेकओव्हर, दिघीकडून. " + sathi(s) + "आल्याबद्दल धन्यवाद. आमच्यासारख्या छोट्या पार्लरसाठी Google वरचा तुमचा एक प्रामाणिक रिव्ह्यू खूप मोलाचा आहे: " + LINK; }]
+    ] };
   function build() {
     var name = document.getElementById("rq-name").value.trim(), i = document.getElementById("rq-svc").value, l = lang();
     var svc = i === "" ? "" : NAMES[+i][l === "mr" ? 1 : 0].replace(/\s*\(.*\)/, "");
-    if (l === "mr") return "नमस्कार" + (name ? " " + name : "") + ", रमा मेकओव्हरमध्ये " + (svc ? svc + "साठी " : "") + "आल्याबद्दल धन्यवाद! वेळ असल्यास, कृपया Google वर तुमचा प्रामाणिक अनुभव लिहा. त्यामुळे आम्हाला सुधारणा करता येते आणि इतरांना आम्हाला शोधणे सोपे होते: " + LINK;
-    return "Hi" + (name ? " " + name : "") + ", thank you for visiting Rama Makeover" + (svc ? " for your " + svc.toLowerCase() : "") + "! If you have a moment, please share your honest experience on Google. It helps us improve and helps others find us: " + LINK;
+    if (l === "en") svc = svc.toLowerCase();
+    var t = TONES[l][k], hint = HINT[l][i === "" ? "none" : NAMES[+i][2]];
+    document.getElementById("rq-tone").textContent = (l === "mr" ? "शैली: " : "Tone: ") + t[0] + " (" + (k + 1) + "/" + TONES[l].length + ")";
+    return t[1](name, svc, l === "mr" ? "लिहिताना " + hint + ", तसेच तुम्ही कुठून आलात, हे सांगू शकता." : "You could mention " + hint + ", plus which area you came from.");
   }
+  document.getElementById("rq-alt").addEventListener("click", function () { k = (k + 1) % TONES[lang()].length; edited = false; refresh(); });
   function link() {
     var d = document.getElementById("rq-phone").value.replace(/\D/g, "");
     if (d.length === 10) d = "91" + d;
