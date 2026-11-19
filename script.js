@@ -106,3 +106,43 @@ document.querySelectorAll(".sk img").forEach(function (img) {
   if (img.complete) done();
   else { img.addEventListener("load", done, { once: true }); img.addEventListener("error", done, { once: true }); }
 });
+
+// 7) Reviews carousel: one card at a time. It switches every 6 s while on screen and pauses under the mouse;
+// tapping a dot, swiping, the arrow keys or tabbing to the dots stop it; the pause/play button stops or restarts it.
+// Without JS every review shows as a plain list.
+document.querySelectorAll(".rv-split").forEach(function (box) {
+  var slides = [].slice.call(box.querySelectorAll(".rv-slide")), dots = [].slice.call(box.querySelectorAll(".rv-dot"));
+  var stack = box.querySelector(".rv-stack"), nav = box.querySelector(".rv-nav"), play = box.querySelector(".rv-play");
+  var at = 0, x0 = null, playing = true, hover = false, seen = true, last = Date.now();
+  function go(i) {
+    at = Math.max(0, Math.min(i, slides.length - 1)); last = Date.now();
+    slides.forEach(function (s, j) { s.classList.toggle("on", j === at); s.setAttribute("aria-hidden", j !== at); s.inert = j !== at; });
+    dots.forEach(function (d, j) { d.setAttribute("aria-current", j === at); });
+  }
+  function setPlaying(on) {
+    playing = on; last = Date.now(); play.classList.toggle("off", !on);
+    play.setAttribute("aria-label", play.getAttribute(on ? "data-pause" : "data-play"));
+    stack.setAttribute("aria-live", on ? "off" : "polite");
+  }
+  dots.forEach(function (d, j) { d.addEventListener("click", function () { setPlaying(false); go(j); }); });
+  play.addEventListener("click", function () { setPlaying(!playing); });
+  nav.addEventListener("focusin", function (e) { if (e.target !== play) setPlaying(false); });
+  nav.addEventListener("keydown", function (e) {
+    if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+    setPlaying(false); go(at + (e.key === "ArrowRight" ? 1 : -1)); dots[at].focus();
+  });
+  stack.addEventListener("mouseenter", function () { hover = true; });
+  stack.addEventListener("mouseleave", function () { hover = false; });
+  stack.addEventListener("pointerdown", function (e) { x0 = e.clientX; });
+  stack.addEventListener("pointerup", function (e) {
+    if (x0 !== null && Math.abs(e.clientX - x0) > 40) { setPlaying(false); go(at + (e.clientX < x0 ? 1 : -1)); }
+    x0 = null;
+  });
+  if ("IntersectionObserver" in window) new IntersectionObserver(function (es) { seen = es[0].isIntersecting; }).observe(stack);
+  setInterval(function () {
+    if (!playing) return;
+    if (hover || !seen || document.hidden) last = Date.now();
+    else if (Date.now() - last >= 6000) go((at + 1) % slides.length);
+  }, 500);
+  go(0); setPlaying(true);
+});

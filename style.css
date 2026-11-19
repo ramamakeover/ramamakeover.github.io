@@ -533,6 +533,7 @@ footer .small { margin-top:40px; padding-top:20px; border-top:1px solid rgba(255
 
   /* Review card scales in; FAQ questions arrive one after another */
   .js .review-card[data-reveal] { transform:translateY(32px) scale(.94); }
+  .js .review-card[data-reveal].in { transform:none; }
   .js .faq[data-reveal] { transform:none; }
   .js .faq[data-reveal] details { opacity:0; transform:translateY(18px); transition:opacity .5s var(--ease), transform .6s var(--ease); }
   .js .faq[data-reveal].in details { opacity:1; transform:none; }
@@ -604,3 +605,47 @@ h2.title { margin-top:0; }
 .site-header.scrolled .logo-link img { height:40px; }
 @media (max-width:360px) { .site-header.scrolled { padding:4px 0 20px; } }
 @media (prefers-reduced-motion:reduce) { .site-header, .site-header .bar-inner, .logo-link img { transition:none; } }
+
+/* Reviews carousel (design from 21st.dev bankkroll/animated-testimonials): one card at a time, initials instead of photos. */
+.rv-stack { display:grid; gap:16px; max-width:560px; margin:32px auto 0; text-align:left; touch-action:pan-y; position:relative; isolation:isolate; }
+.rv-slide { display:flex; flex-direction:column; margin:0; padding:28px 24px 24px; border-radius:20px; background:var(--ivory); color:var(--cocoa); box-shadow:0 12px 32px rgba(0,0,0,.28); }
+.rv-stars { color:var(--rose); letter-spacing:.12em; }
+.rv-slide blockquote { position:relative; flex:1; margin:16px 0 0; font-size:18px; font-weight:500; line-height:1.6; }
+.rv-slide blockquote::before { content:"\201C"; position:absolute; top:-20px; left:-6px; font:400 64px/1 var(--head); color:var(--rose); opacity:.25; }
+.rv-slide blockquote p { position:relative; }
+.rv-slide figcaption { display:flex; align-items:center; gap:14px; margin-top:20px; padding-top:16px; border-top:1px solid var(--border); }
+.rv-slide figcaption b, .rv-slide figcaption small { display:block; }
+.rv-slide figcaption small { color:var(--muted); font-size:14px; }
+.rv-av { display:grid; place-items:center; flex:none; width:44px; height:44px; border-radius:50%; background:var(--cream); border:1px solid var(--border); font:400 20px/1 var(--head); color:var(--rose-ink); }
+.js .rv-stack { gap:0; }
+.js .rv-slide { grid-area:1/1; transition:opacity .5s ease-in-out, transform .5s ease-in-out; }
+.js .rv-slide:not(.on) { opacity:0; transform:translateX(48px) scale(.92); }
+.rv-nav { display:flex; justify-content:center; margin-top:16px; }
+html:not(.js) .rv-nav { display:none; }
+.rv-dot { display:inline-flex; align-items:center; justify-content:center; min-width:24px; min-height:44px; padding:0; border:0; background:none; cursor:pointer; }
+.rv-dot::before { content:""; width:10px; height:10px; border-radius:999px; background:rgba(253,252,250,.35); transition:width .3s, background-color .3s; }
+.rv-dot[aria-current="true"]::before { width:40px; background:var(--ivory); }
+.rv-split :focus-visible { outline-color:var(--ivory); }
+.rv-play { display:inline-flex; align-items:center; justify-content:center; min-width:44px; min-height:44px; margin-left:12px; padding:0; border:1px solid rgba(253,252,250,.45); border-radius:999px; background:none; color:var(--ivory); cursor:pointer; }
+.rv-play .ico { width:20px; height:20px; stroke-width:2.5; }
+.rv-play .i-play { display:none; fill:currentColor; }
+.rv-play.off .i-play { display:inline; }
+.rv-play.off .i-pause { display:none; }
+@media (min-width:900px) {
+  .rv-split { display:grid; grid-template-columns:1fr minmax(0,520px); grid-template-areas:"text card" "nav card" "ctas card"; column-gap:64px; padding:64px; text-align:left; }
+  .rv-text { grid-area:text; align-self:end; }
+  .rv-split .eyebrow::after { display:none; }
+  .rv-split .title > .eyebrow { justify-content:flex-start; }
+  .rv-split .intro { margin-left:0; }
+  .rv-stack { grid-area:card; align-self:center; margin:0; }
+  .rv-stack::before, .rv-stack::after { content:""; position:absolute; z-index:-1; width:96px; height:96px; border-radius:16px; background:rgba(217,166,160,.14); }
+  .rv-stack::before { left:-24px; bottom:-24px; }
+  .rv-stack::after { right:-24px; top:-24px; }
+  .rv-nav { grid-area:nav; justify-content:flex-start; margin-top:20px; }
+  .rv-split .ctas { grid-area:ctas; justify-content:flex-start; align-self:start; }
+}
+@media (prefers-reduced-motion:reduce) {
+  .js .rv-slide { transition:opacity .3s ease; }
+  .js .rv-slide:not(.on) { transform:none; }
+  .rv-dot::before { transition:none; }
+}
