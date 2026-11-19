@@ -569,6 +569,9 @@ h2.title { margin-top:0; }
 .crumbs a { color:inherit; }
 .svc-photo { border-radius:var(--r-card); overflow:hidden; }
 .svc-photo img { display:block; width:100%; height:auto; }
+/* 9:16 video ad on a service page */
+.svc-video { justify-self:center; width:100%; max-width:360px; }
+.svc-video video { display:block; width:100%; height:auto; aspect-ratio:9/16; border-radius:var(--r-card); background:var(--cocoa); box-shadow:0 18px 48px rgba(53,43,42,.18); }
 
 /* "All services" box under the service cards */
 .all-svc { margin-top:40px; background:var(--white); border:1px solid var(--border); border-radius:var(--r-card); padding:28px; }
